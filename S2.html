@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Animation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .box {
+      width: 500px;
+      height: 500px;
+      background: none;
+      position: relative;
+      top: 0;
+      overflow: hidden;
+      transition: top 0.5s, background-color 0.5s;
+    }
+
+    .box:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: inherit;
+      transform: scale(0);
+      transform-origin: top left;
+      transition: transform 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <button onclick="animateBox('Monday')" style="background-color: pink;">Monday</button>
+      <button onclick="animateBox('Tuesday')" style="background-color: #d6bc28;">Tuesday</button>
+      <button onclick="animateBox('Wednesday')" style="background-color: blue;">Wednesday</button>
+      <button onclick="animateBox('Thursday')" style="background-color: green;">Thursday</button>
+      <button onclick="animateBox('Friday')" style="background-color: yellow;">Friday</button>
+      <button onclick="animateBox('Saturday')" style="background-color: orange;">Saturday</button>
+      <button onclick="animateBox('Sunday')" style="background-color: red;">Sunday</button>
+    </div>
+
+    <div class="box" id="animatedBox"></div>
+  </div>
+
+  <script>
+    function animateBox(day) {
+      const box = document.getElementById('animatedBox');
+      const colorMap = {
+        Monday: 'pink',
+        Tuesday: '#d6bc28',
+        Wednesday: 'blue',
+        Thursday: 'green',
+        Friday: 'yellow',
+        Saturday: 'orange',
+        Sunday: 'red'
+      };
+
+      const boxColor = colorMap[day];
+      box.style.backgroundColor = boxColor;
+      box.style.top = '100px'; 
+
+      setTimeout(() => {
+        box.style.top = '0';
+        box.style.backgroundColor = 'transparent';
+      }, 500); 
+    }
+  </script>
+</body>
+</html>
